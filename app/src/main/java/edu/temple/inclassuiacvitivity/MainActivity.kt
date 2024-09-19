@@ -2,8 +2,12 @@ package edu.temple.inclassuiacvitivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.voice.VoiceInteractionSession.ActivityId
 import android.view.View
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
+import org.w3c.dom.Text
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,18 @@ class MainActivity : AppCompatActivity() {
 
 
         // TODO Step 4: Change TextView's text size to the number selected in the Spinner */
-        //spinner.onItemSelectedListener = object: ...
+        spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                p1?.run {
+                    val textSize = numberArray[p2]
+                    displayTextView.textSize = textSize.toFloat()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
 
     }
 }
